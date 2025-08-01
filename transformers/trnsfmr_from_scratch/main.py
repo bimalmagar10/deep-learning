@@ -1,0 +1,24 @@
+from utils.data_loader import DataLoader
+from utils.tokenize import Tokenizer
+from data import en,es
+from models.embedding import Embeddings
+import torch
+import torch.nn as nn
+
+def main():
+    print("This is the implementation of transformer from scratch in PyTorch.........!!")
+    tokenizer = Tokenizer()
+    data_loader = DataLoader(
+        tokenize_source=tokenizer.tokenize_source,
+        tokenize_target=tokenizer.tokenize_target
+    )
+    train_set,valid_set,test_set = data_loader.make_dataset(es,en)
+    vocab_src,vocab_trg = data_loader.build_vocab(train_set,valid_set,test_set)
+    # for word,index in vocab_trg.get_stoi().items():
+    #     print(word,index)
+   
+    print("Source vobularies:",vocab_src)
+    embed = nn.Embedding(len(vocab_src),3)
+    print(embed(torch.tensor(vocab_src.get_stoi()['víctimas'])))
+if __name__ == "__main__":
+    main()

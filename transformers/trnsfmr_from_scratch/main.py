@@ -16,9 +16,9 @@ def main():
     vocab_src,vocab_trg = data_loader.build_vocab(train_set,valid_set,test_set)
     # for word,index in vocab_trg.get_stoi().items():
     #     print(word,index)
-   
+     
     print("Source vobularies:",vocab_src)
-    embed = nn.Embedding(len(vocab_src),3)
+    embed = nn.Embedding(len(vocab_src),4)
     print(embed(torch.tensor(vocab_src.get_stoi()['víctimas'])))
 if __name__ == "__main__":
     main()

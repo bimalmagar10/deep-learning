@@ -34,7 +34,7 @@ class DataLoader:
         print("Building Spanish Vocabulary.....")
         vocab_src = build_vocab_from_iterator(
             yield_tokens(train_data + valid_data + test_data,"src"),
-            min_freq = 2,
+            min_freq = 1,
             specials = ["<unk>","<pad>","<sos>","<eos>"]
         )
         print("Done Building Spanish Vocabulary!")
@@ -42,7 +42,7 @@ class DataLoader:
         print("Buidling English Vocabulary.........")
         vocab_trg = build_vocab_from_iterator(
             yield_tokens(train_data + valid_data + test_data,"trg"),
-            min_freq = 2,
+            min_freq = 1,
             specials = ["<unk>","<pad>","<sos>","<eos>"]
         )
         print("Done building English Vocabulary!")

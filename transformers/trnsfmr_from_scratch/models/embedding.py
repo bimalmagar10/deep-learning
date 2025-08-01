@@ -2,7 +2,7 @@ import torch.nn as nn
 import math
 class Embeddings(nn.Module):
     def __init__(self,vocab_size,d_model):
-        super(Embeddings,self).__init__()
+        super().__init__()
         print("Initialized embeddings class!!!")
         self.d_model = d_model
         self.vocab_size =  vocab_size

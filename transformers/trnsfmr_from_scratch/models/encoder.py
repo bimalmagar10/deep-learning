@@ -1,2 +1,1 @@
-
-print("I am an encoder!!")
+# This module contains the Encoder section for transformers

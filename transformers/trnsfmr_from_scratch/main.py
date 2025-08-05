@@ -4,8 +4,10 @@ from data import en,es
 from models.embedding import Embeddings
 import torch
 import torch.nn as nn
+import sys,platform
 
 def main():
+    print(f"sys.platform: {sys.platform} and platform_machine: {platform.machine()}")
     print("This is the implementation of transformer from scratch in PyTorch.........!!")
     tokenizer = Tokenizer()
     data_loader = DataLoader(

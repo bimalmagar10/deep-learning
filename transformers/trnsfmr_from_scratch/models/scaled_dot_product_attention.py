@@ -24,7 +24,7 @@ class ScaledDotProductAttention(nn.Module):
         attention_weights = F.softmax(scores, dim=-1)
         output = attention_weights @ value
         
-        return attention_weights
+        return output
     
     def query_key_attention(self,q,k,scaled=True):
 

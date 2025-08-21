@@ -16,8 +16,8 @@ def main():
     )
     train_set,valid_set,test_set = data_loader.make_dataset(es,en)
     vocab_src,vocab_trg = data_loader.build_vocab(train_set,valid_set,test_set)
-    # for word,index in vocab_trg.get_stoi().items():
-    #     print(word,index)
+    for word,index in vocab_trg.get_stoi().items():
+        print(word,index)
      
     print("Source vobularies:",vocab_src)
     embed = nn.Embedding(len(vocab_src),4)

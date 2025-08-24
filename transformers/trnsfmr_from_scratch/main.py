@@ -15,7 +15,7 @@ def main():
         tokenize_target=tokenizer.tokenize_target
     )
     train_set,valid_set,test_set = data_loader.make_dataset(es,en)
-    vocab_src,vocab_trg = data_loader.build_vocab(train_set,valid_set,test_set)
+    vocab_src,_ = data_loader.build_vocab(train_set,valid_set,test_set)
      
     print("Source vobularies:",vocab_src)
     embed = nn.Embedding(len(vocab_src),4)

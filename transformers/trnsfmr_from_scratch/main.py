@@ -16,8 +16,6 @@ def main():
     )
     train_set,valid_set,test_set = data_loader.make_dataset(es,en)
     vocab_src,_ = data_loader.build_vocab(train_set,valid_set,test_set)
-     
-    print("Source vobularies:",vocab_src)
     embed = nn.Embedding(len(vocab_src),4)
     print(embed(torch.tensor(vocab_src.get_stoi()['víctimas'])))
 if __name__ == "__main__":

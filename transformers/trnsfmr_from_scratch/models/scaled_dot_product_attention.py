@@ -51,34 +51,28 @@ class ScaledDotProductAttention(nn.Module):
         scores = scores / math.sqrt(self.d_model)
         
         # Apply softmax to get attention weights
-        attention_weights = F.softmax(scores, dim=-1)  # [batch_size, seq_length, seq_length]
+        attention_weights = F.softmax(scores, dim=-1)  # -> [batch_size, seq_length, seq_length]
         
         # Apply attention weights to values
         # [batch_size, seq_length, seq_length] @ [batch_size, seq_length, d_model]
-        # -> [batch_size, seq_length, d_model]
-        output = attention_weights @ value
+        output = attention_weights @ value # -> [batch_size, seq_length, d_model]
         
         return output, attention_weights
     
-    def query_key_attention(self, q, k, scaled=True):
-        """
-        Compute attention scores between query and key
+    def query_key_value_attention(self, q, k,v, scaled=True):
         
-        Args:
-            q: [batch_size, seq_length, d_model]
-            k: [batch_size, seq_length, d_model]
-            scaled: whether to scale by sqrt(d_model)
-            
-        Returns:
-            scores: [batch_size, seq_length, seq_length]
-        """
         query = self.w_q(q)
         key = self.w_k(k)
+        value = self.w_v(v)
         scores = query @ key.transpose(-2, -1)
         
         if scaled:
             scores = scores / math.sqrt(self.d_model)
         
-        return scores
+        attened_scores = F.softmax(scores, dim=-1)
+
+        output = attened_scores @ value
+
+        return attened_scores, output
 
 
